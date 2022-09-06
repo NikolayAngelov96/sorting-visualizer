@@ -1,5 +1,11 @@
+import Visualizer from "./Visualizer";
+
 function App() {
-  return <div>Hello World</div>;
+  return (
+    <div>
+      <Visualizer />
+    </div>
+  );
 }
 
 export default App;
