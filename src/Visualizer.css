@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.item {
+  background-color: red;
+}
