@@ -10,10 +10,18 @@ export default function Visualizer() {
   return (
     <div className="container">
       {values.map((x, i) => (
-        <div key={`${x} - ${i}`} style={{ height: `${x}px` }} className="item">
+        <div>
+          <div
+            key={`${x} - ${i}`}
+            style={{ height: `${x}px` }}
+            className="item"
+          ></div>
           {x}
         </div>
       ))}
+      <button onClick={() => setValues(generateArray())}>
+        Generate New Array
+      </button>
     </div>
   );
 }
