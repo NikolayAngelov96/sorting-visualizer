@@ -14,6 +14,8 @@
   align-items: flex-end;
   padding: 1px;
   color: white;
+
+  transition: all 300ms ease-in-out;
 }
 
 .header {
@@ -27,12 +29,23 @@
   background-color: transparent;
   cursor: pointer;
   font-weight: bold;
-  border-bottom: 1px solid lightcoral;
-  padding: 4px;
+  color: lightcoral;
+  padding: 6px;
+  border-radius: 5px;
 }
 
 .btn:hover {
-  background-color: lightcoral;
   opacity: 90%;
-  border-radius: 4px;
+  text-decoration: underline;
+}
+
+.generate-btn {
+  border: 1px solid lightcoral;
+  margin-right: 1.5rem;
+}
+
+.generate-btn:hover {
+  background-color: lightcoral;
+  color: white;
+  text-decoration: none;
 }
