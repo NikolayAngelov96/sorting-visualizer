@@ -63,3 +63,23 @@ const bubbleSort = async (arr) => {
 
   domArray.forEach((e) => (e.style.backgroundColor = "blue"));
 };
+
+const selectionSort = async (arr) => {
+  const domArray = [...document.getElementsByClassName("item")];
+
+  for (let i = 0; i < arr.length; i++) {
+    let minNumber = arr[i];
+    let minIndex = i;
+
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] < minNumber) {
+        minNumber = arr[j];
+        minIndex = j;
+      }
+    }
+
+    let temp = arr[i];
+    arr[i] = arr[minIndex];
+    arr[minIndex] = temp;
+  }
+};
