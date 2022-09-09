@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getRandomNumber } from "./utils/helpers";
+import { generateArray, sleep } from "./utils/helpers";
 import "./Visualizer.css";
 
 const initialArray = generateArray();
@@ -30,10 +30,6 @@ export default function Visualizer() {
       </div>
     </div>
   );
-}
-
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 const bubbleSort = async (arr) => {
@@ -67,12 +63,3 @@ const bubbleSort = async (arr) => {
 
   domArray.forEach((e) => (e.style.backgroundColor = "blue"));
 };
-
-function generateArray() {
-  const arr = [];
-  for (let i = 0; i < 10; i++) {
-    arr.push(getRandomNumber());
-  }
-
-  return arr;
-}
