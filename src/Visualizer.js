@@ -19,7 +19,9 @@ export default function Visualizer() {
         <button className="btn" onClick={() => bubbleSort(values)}>
           Bubble Sort
         </button>
-        <button className="btn">Selection Sort</button>
+        <button className="btn" onClick={() => selectionSort(values)}>
+          Selection Sort
+        </button>
       </div>
       <div className="container">
         {values.map((x, i) => (
@@ -70,11 +72,23 @@ const selectionSort = async (arr) => {
   for (let i = 0; i < arr.length; i++) {
     let minNumber = arr[i];
     let minIndex = i;
+    domArray[i].style.backgroundColor = "red";
+    await sleep(500);
 
     for (let j = i + 1; j < arr.length; j++) {
+      domArray[j].style.backgroundColor = "green";
+      await sleep(500);
       if (arr[j] < minNumber) {
+        domArray[minIndex].style.backgroundColor = "blue";
         minNumber = arr[j];
         minIndex = j;
+
+        domArray[minIndex].style.backgroundColor = "red";
+
+        await sleep(500);
+      } else {
+        domArray[j].style.backgroundColor = "blue";
+        await sleep(500);
       }
     }
 
