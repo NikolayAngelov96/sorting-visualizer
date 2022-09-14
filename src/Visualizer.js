@@ -58,11 +58,13 @@ const bubbleSort = async (arr) => {
       }
 
       domArray[j].style.backgroundColor = "blue";
-      domArray[j + 1].style.backgroundColor = "blue";
+      domArray[j + 1].style.backgroundColor = "purple";
     }
     await sleep(500);
   }
+  domArray[0].style.backgroundColor = "purple";
 
+  await sleep(1000);
   domArray.forEach((e) => (e.style.backgroundColor = "blue"));
 };
 
@@ -108,4 +110,7 @@ const selectionSort = async (arr) => {
     domArray[i].style.backgroundColor = "purple";
     await sleep(500);
   }
+
+  await sleep(1000);
+  domArray.forEach((x) => (x.style.backgroundColor = "blue"));
 };
