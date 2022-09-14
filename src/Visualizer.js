@@ -92,8 +92,20 @@ const selectionSort = async (arr) => {
       }
     }
 
+    // pick different color when swaping for better understanding
+
     let temp = arr[i];
     arr[i] = arr[minIndex];
     arr[minIndex] = temp;
+
+    domArray[i].style.height = arr[i] + "px";
+    domArray[i].textContent = arr[i];
+
+    domArray[minIndex].style.height = arr[minIndex] + "px";
+    domArray[minIndex].textContent = arr[minIndex];
+    domArray[minIndex].style.backgroundColor = "blue";
+
+    domArray[i].style.backgroundColor = "purple";
+    await sleep(500);
   }
 };
