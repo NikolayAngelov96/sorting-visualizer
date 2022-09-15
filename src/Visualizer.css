@@ -9,7 +9,7 @@
 }
 
 .item {
-  background-color: blue;
+  background-color: #0089ba;
 
   display: flex;
   align-items: flex-end;
@@ -31,7 +31,7 @@
   background-color: transparent;
   cursor: pointer;
   font-weight: bold;
-  color: lightcoral;
+  color: #d65db1;
   padding: 6px;
   border-radius: 5px;
 }
@@ -42,12 +42,12 @@
 }
 
 .generate-btn {
-  border: 1px solid lightcoral;
+  border: 1px solid #d65db1;
   margin-right: 1.5rem;
 }
 
 .generate-btn:hover {
-  background-color: lightcoral;
+  background-color: #d65db1;
   color: white;
   text-decoration: none;
 }
