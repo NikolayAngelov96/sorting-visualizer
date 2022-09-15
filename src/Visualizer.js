@@ -94,7 +94,8 @@ const selectionSort = async (arr) => {
       }
     }
 
-    // pick different color when swaping for better understanding
+    domArray[i].style.backgroundColor = colors.pink;
+    await sleep(500);
 
     let temp = arr[i];
     arr[i] = arr[minIndex];
