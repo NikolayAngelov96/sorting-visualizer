@@ -97,6 +97,56 @@ export default function Visualizer() {
     setIsAnimating(false);
   };
 
+  const insertionSort = async (arr) => {
+    const barsArray = [...document.getElementsByClassName("item")];
+
+    for (let i = 1; i < arr.length; i++) {
+      setIsAnimating(true);
+      let key = arr[i];
+      barsArray[i].style.backgroundColor = colors.pink;
+      await sleep(400);
+
+      for (let j = i; j > 0; j--) {
+        let current = arr[j - 1];
+
+        // color pink is blinking
+
+        if (key < current) {
+          let temp = arr[j - 1];
+          arr[j - 1] = key;
+          arr[j] = temp;
+
+          barsArray[j].style.backgroundColor = colors.pink;
+          await sleep(300);
+
+          barsArray[j - 1].style.backgroundColor = colors.green;
+          await sleep(300);
+
+          barsArray[j - 1].style.height = arr[j - 1] + "px";
+          barsArray[j - 1].textContent = arr[j - 1];
+
+          barsArray[j].style.height = arr[j] + "px";
+          barsArray[j].textContent = arr[j];
+          barsArray[j].style.backgroundColor = colors.purple;
+          await sleep(300);
+        } else {
+          // when checking value that is lower than current should change to color to demonstrate the comparing
+          barsArray[j - 1].style.backgroundColor = colors.purple;
+          break;
+        }
+
+        barsArray[i].style.backgroundColor = colors.purple;
+        barsArray[j - 1].style.backgroundColor = colors.purple;
+        await sleep(400);
+      }
+    }
+
+    barsArray[arr.length - 1].style.backgroundColor = colors.purple;
+    await sleep(1000);
+    barsArray.forEach((el) => (el.style.backgroundColor = colors.blue));
+    setIsAnimating(false);
+  };
+
   return (
     <div>
       <div className="header">
@@ -120,6 +170,13 @@ export default function Visualizer() {
           disabled={isAnimating}
         >
           Selection Sort
+        </button>
+        <button
+          className="btn"
+          onClick={() => insertionSort(values)}
+          disabled={isAnimating}
+        >
+          Insertion Sort
         </button>
       </div>
       <div className="container">
