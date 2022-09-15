@@ -53,12 +53,12 @@
 }
 
 .btn:disabled {
-  color: gray;
+  color: #b0a8b9;
   cursor: not-allowed;
 }
 
 .generate-btn:disabled {
-  border: 1px solid gray;
-  background-color: gray;
+  border: 1px solid #b0a8b9;
+  background-color: #b0a8b9;
   color: white;
 }
