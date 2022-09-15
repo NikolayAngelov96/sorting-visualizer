@@ -6,6 +6,96 @@ const initialArray = generateArray();
 
 export default function Visualizer() {
   const [values, setValues] = useState(initialArray);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const bubbleSort = async (arr) => {
+    const barsArray = [...document.getElementsByClassName("item")];
+
+    for (let i = 0; i < arr.length; i++) {
+      setIsAnimating(true);
+      for (let j = 0; j < arr.length - 1 - i; j++) {
+        barsArray[j].style.backgroundColor = colors.pink;
+        barsArray[j + 1].style.backgroundColor = colors.pink;
+        await sleep(400);
+        if (arr[j] > arr[j + 1]) {
+          let temp = arr[j];
+          arr[j] = arr[j + 1];
+          arr[j + 1] = temp;
+
+          barsArray[j].style.height = arr[j] + "px";
+          barsArray[j].style.backgroundColor = colors.pink;
+          barsArray[j].textContent = arr[j];
+
+          barsArray[j + 1].style.height = arr[j + 1] + "px";
+          barsArray[j + 1].style.backgroundColor = colors.pink;
+          barsArray[j + 1].textContent = arr[j + 1];
+          await sleep(400);
+        }
+
+        barsArray[j].style.backgroundColor = colors.blue;
+        barsArray[j + 1].style.backgroundColor = colors.purple;
+      }
+      await sleep(400);
+    }
+    barsArray[0].style.backgroundColor = colors.purple;
+
+    await sleep(1000);
+    barsArray.forEach((e) => (e.style.backgroundColor = colors.blue));
+
+    setIsAnimating(false);
+  };
+
+  const selectionSort = async (arr) => {
+    const barsArray = [...document.getElementsByClassName("item")];
+
+    for (let i = 0; i < arr.length; i++) {
+      setIsAnimating(true);
+
+      let minNumber = arr[i];
+      let minIndex = i;
+      barsArray[i].style.backgroundColor = colors.pink;
+      await sleep(400);
+
+      for (let j = i + 1; j < arr.length; j++) {
+        barsArray[j].style.backgroundColor = colors.green;
+        await sleep(400);
+        if (arr[j] < minNumber) {
+          barsArray[minIndex].style.backgroundColor = colors.blue;
+          minNumber = arr[j];
+          minIndex = j;
+
+          barsArray[minIndex].style.backgroundColor = colors.pink;
+
+          await sleep(400);
+        } else {
+          barsArray[j].style.backgroundColor = colors.blue;
+          await sleep(400);
+        }
+      }
+
+      barsArray[i].style.backgroundColor = colors.pink;
+      await sleep(400);
+
+      let temp = arr[i];
+      arr[i] = arr[minIndex];
+      arr[minIndex] = temp;
+
+      barsArray[i].style.height = arr[i] + "px";
+      barsArray[i].textContent = arr[i];
+
+      barsArray[minIndex].style.height = arr[minIndex] + "px";
+      barsArray[minIndex].textContent = arr[minIndex];
+      barsArray[minIndex].style.backgroundColor = colors.blue;
+
+      barsArray[i].style.backgroundColor = colors.purple;
+      await sleep(400);
+    }
+
+    await sleep(1000);
+    barsArray.forEach((x) => (x.style.backgroundColor = colors.blue));
+
+    setIsAnimating(false);
+  };
 
   return (
     <div>
@@ -13,13 +103,22 @@ export default function Visualizer() {
         <button
           onClick={() => setValues(generateArray())}
           className="btn generate-btn"
+          disabled={isAnimating}
         >
           Generate New Array
         </button>
-        <button className="btn" onClick={() => bubbleSort(values)}>
+        <button
+          className="btn"
+          onClick={() => bubbleSort(values)}
+          disabled={isAnimating}
+        >
           Bubble Sort
         </button>
-        <button className="btn" onClick={() => selectionSort(values)}>
+        <button
+          className="btn"
+          onClick={() => selectionSort(values)}
+          disabled={isAnimating}
+        >
           Selection Sort
         </button>
       </div>
@@ -33,85 +132,3 @@ export default function Visualizer() {
     </div>
   );
 }
-
-const bubbleSort = async (arr) => {
-  const domArray = [...document.getElementsByClassName("item")];
-
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length - 1 - i; j++) {
-      domArray[j].style.backgroundColor = colors.pink;
-      domArray[j + 1].style.backgroundColor = colors.pink;
-      await sleep(500);
-      if (arr[j] > arr[j + 1]) {
-        let temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
-
-        domArray[j].style.height = arr[j] + "px";
-        domArray[j].style.backgroundColor = colors.pink;
-        domArray[j].textContent = arr[j];
-
-        domArray[j + 1].style.height = arr[j + 1] + "px";
-        domArray[j + 1].style.backgroundColor = colors.pink;
-        domArray[j + 1].textContent = arr[j + 1];
-        await sleep(500);
-      }
-
-      domArray[j].style.backgroundColor = colors.blue;
-      domArray[j + 1].style.backgroundColor = colors.purple;
-    }
-    await sleep(500);
-  }
-  domArray[0].style.backgroundColor = colors.purple;
-
-  await sleep(1000);
-  domArray.forEach((e) => (e.style.backgroundColor = colors.blue));
-};
-
-const selectionSort = async (arr) => {
-  const domArray = [...document.getElementsByClassName("item")];
-
-  for (let i = 0; i < arr.length; i++) {
-    let minNumber = arr[i];
-    let minIndex = i;
-    domArray[i].style.backgroundColor = colors.pink;
-    await sleep(500);
-
-    for (let j = i + 1; j < arr.length; j++) {
-      domArray[j].style.backgroundColor = colors.green;
-      await sleep(500);
-      if (arr[j] < minNumber) {
-        domArray[minIndex].style.backgroundColor = colors.blue;
-        minNumber = arr[j];
-        minIndex = j;
-
-        domArray[minIndex].style.backgroundColor = colors.pink;
-
-        await sleep(500);
-      } else {
-        domArray[j].style.backgroundColor = colors.blue;
-        await sleep(500);
-      }
-    }
-
-    domArray[i].style.backgroundColor = colors.pink;
-    await sleep(500);
-
-    let temp = arr[i];
-    arr[i] = arr[minIndex];
-    arr[minIndex] = temp;
-
-    domArray[i].style.height = arr[i] + "px";
-    domArray[i].textContent = arr[i];
-
-    domArray[minIndex].style.height = arr[minIndex] + "px";
-    domArray[minIndex].textContent = arr[minIndex];
-    domArray[minIndex].style.backgroundColor = colors.blue;
-
-    domArray[i].style.backgroundColor = colors.purple;
-    await sleep(500);
-  }
-
-  await sleep(1000);
-  domArray.forEach((x) => (x.style.backgroundColor = colors.blue));
-};
