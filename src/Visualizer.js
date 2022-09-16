@@ -13,6 +13,7 @@ export default function Visualizer() {
 
     for (let i = 0; i < arr.length; i++) {
       setIsAnimating(true);
+
       for (let j = 0; j < arr.length - 1 - i; j++) {
         barsArray[j].style.backgroundColor = colors.pink;
         barsArray[j + 1].style.backgroundColor = colors.pink;
@@ -103,8 +104,8 @@ export default function Visualizer() {
     for (let i = 1; i < arr.length; i++) {
       setIsAnimating(true);
       let key = arr[i];
-      barsArray[i].style.backgroundColor = colors.pink;
-      await sleep(400);
+      // barsArray[i].style.backgroundColor = colors.pink;
+      // await sleep(400);
 
       for (let j = i; j > 0; j--) {
         let current = arr[j - 1];
@@ -129,15 +130,22 @@ export default function Visualizer() {
           barsArray[j].textContent = arr[j];
           barsArray[j].style.backgroundColor = colors.purple;
           await sleep(300);
-        } else {
-          // when checking value that is lower than current should change to color to demonstrate the comparing
+
+          barsArray[i].style.backgroundColor = colors.purple;
           barsArray[j - 1].style.backgroundColor = colors.purple;
+          await sleep(400);
+        } else {
+          barsArray[j].style.backgroundColor = colors.pink;
+          await sleep(300);
+
+          barsArray[j - 1].style.backgroundColor = colors.green;
+          await sleep(300);
+          barsArray[j - 1].style.backgroundColor = colors.purple;
+          barsArray[j].style.backgroundColor = colors.purple;
+
+          await sleep(300);
           break;
         }
-
-        barsArray[i].style.backgroundColor = colors.purple;
-        barsArray[j - 1].style.backgroundColor = colors.purple;
-        await sleep(400);
       }
     }
 
